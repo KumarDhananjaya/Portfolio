@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { NAV_LINKS } from '@/constants'
 
 function Navbar() {
   return (
@@ -9,6 +10,15 @@ function Navbar() {
               kumar<span className="text-blue-700"> dhananjaya</span>
               <span className="absolute top-[-0.3rem] right-[-1rem] h-5 w-5 linearGradient rounded-full -z-10"></span>
           </Link>
+          <ul className="hidden h-full gap-6 lg:flex px-6 py-3">
+            {
+             NAV_LINKS.map((link) => (
+              <Link href={link.href} key={link.key} className="flexCenter">
+                {link.label}
+              </Link>
+             ))
+            }
+          </ul>
       </div>
     </nav>
   )
