@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 function Navbar() {
   return (
-    <nav className='padding-container relative z-30 rounded-lg bg-white shadow-xl ring-1 ring-slate-100 '>
+    <nav className='padding-container relative z-30 rounded-lg bg-white shadow-xl ring-1 ring-slate-100 py-4 lg:py-0'>
       <div className="flexBetween max-container">
         <Link href="/" className="bold-28 capitalize relative">
           kumar<span className="text-blue-700"> dhananjaya</span>
@@ -21,7 +21,7 @@ function Navbar() {
           }
         </ul>
         <Image
-          src="public/menu.svg"
+          src="/menu.svg"
           alt='menu'
           width={28}
           height={28}
