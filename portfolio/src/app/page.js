@@ -1,100 +1,251 @@
 import Image from "next/image";
+import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const projects = {
+    web: [
+      {
+        title: "Project One",
+        description: "A full-stack application built with Next.js and Node.js",
+        tech: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS"],
+        github: "https://github.com/yourusername/project-one",
+        live: "https://project-one.vercel.app",
+      },
+      {
+        title: "Project Two",
+        description: "Real-time chat application with WebSocket integration",
+        tech: ["React", "Socket.io", "Express", "MongoDB"],
+        github: "https://github.com/yourusername/project-two",
+        live: "https://project-two.vercel.app",
+      },
+    ],
+    mobile: [
+      {
+        title: "Mobile App One",
+        description: "Cross-platform mobile app built with React Native",
+        tech: ["React Native", "Redux", "Firebase", "Expo"],
+        github: "https://github.com/yourusername/mobile-one",
+        live: "https://play.google.com/store/apps/details?id=com.example",
+      },
+    ],
+    ml: [
+      {
+        title: "ML Project One",
+        description: "Image classification model using deep learning",
+        tech: ["Python", "TensorFlow", "OpenCV", "scikit-learn"],
+        github: "https://github.com/yourusername/ml-project",
+        live: "https://huggingface.co/yourusername/ml-project",
+      },
+    ],
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const ProjectCard = ({ project }) => (
+    <div className="bg-gray-900 rounded-lg p-6 border border-gray-800 hover:border-blue-500/50 transition-colors">
+      <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+      <p className="text-gray-400 mb-4">{project.description}</p>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {project.tech.map((tech, techIndex) => (
+          <span
+            key={techIndex}
+            className="px-3 py-1 bg-gray-800 rounded-full text-sm"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
+            {tech}
+          </span>
+        ))}
+      </div>
+      <div className="flex space-x-4">
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors"
+        >
+          <Github className="w-4 h-4" />
+          <span>Code</span>
+        </a>
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors"
+        >
+          <ExternalLink className="w-4 h-4" />
+          <span>Live Demo</span>
+        </a>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen">
+      {/* Navigation */}
+      <nav className="fixed w-full bg-gray-950/80 backdrop-blur-sm border-b border-gray-800 z-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <span className="text-xl font-bold font-[family-name:var(--font-geist-mono)]">
+                S Kumar Dhananjaya<span className="text-blue-500">.dev</span>
+              </span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <a href="#projects" className="hover:text-blue-400 transition-colors">
+                Projects
+              </a>
+              <a href="#about" className="hover:text-blue-400 transition-colors">
+                About
+              </a>
+              <a href="#contact" className="hover:text-blue-400 transition-colors">
+                Contact
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div className="space-y-6">
+          <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            Full-Stack Developer
+          </h1>
+          <p className="text-xl text-gray-400 max-w-2xl">
+            I build exceptional digital experiences with modern technologies.
+            Focused on creating scalable and performant applications that solve
+            real-world problems.
+          </p>
+          <div className="flex space-x-4">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+            >
+              <Github className="w-6 h-6" />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+            >
+              <Linkedin className="w-6 h-6" />
+            </a>
+            <a
+              href="mailto:your.email@example.com"
+              className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+            >
+              <Mail className="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-12">Featured Projects</h2>
+        
+        {/* Web Development Projects */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            Web Development
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.web.map((project, index) => (
+              <ProjectCard key={index} project={project} />
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Development Projects */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            Mobile Development
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.mobile.map((project, index) => (
+              <ProjectCard key={index} project={project} />
+            ))}
+          </div>
+        </div>
+
+        {/* Machine Learning Projects */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            Machine Learning
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.ml.map((project, index) => (
+              <ProjectCard key={index} project={project} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8">About Me</h2>
+        <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
+          <p className="text-gray-400 mb-6">
+            I'm a passionate developer with expertise in building modern web applications.
+            With a strong foundation in both frontend and backend technologies,
+            I create seamless user experiences while ensuring robust and scalable
+            backend architectures.
+          </p>
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold">Technical Skills</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div>
+                <h4 className="font-bold mb-2">Frontend</h4>
+                <ul className="text-gray-400 space-y-1">
+                  <li>React / Next.js</li>
+                  <li>TypeScript</li>
+                  <li>Tailwind CSS</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-bold mb-2">Backend</h4>
+                <ul className="text-gray-400 space-y-1">
+                  <li>Node.js</li>
+                  <li>Python</li>
+                  <li>PostgreSQL</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-bold mb-2">Tools</h4>
+                <ul className="text-gray-400 space-y-1">
+                  <li>Git</li>
+                  <li>Docker</li>
+                  <li>AWS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
+        <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
+          <p className="text-gray-400 mb-6">
+            I'm always interested in hearing about new projects and opportunities.
+            Whether you have a question or just want to say hi, feel free to reach out!
+          </p>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:your.email@example.com"
+            className="inline-flex items-center px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition-colors"
           >
-            Read our docs
+            <Mail className="w-5 h-5 mr-2" />
+            Send me an email
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div className="max-w-6xl mx-auto text-center text-gray-400">
+          <p>© {new Date().getFullYear()} Kumar Dhananjaya. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );
