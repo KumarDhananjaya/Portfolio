@@ -246,8 +246,8 @@ export default function Home() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <span className="text-xl font-bold font-mono">
-                S Kumar Dhananjaya
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">.dev</span>
+                Portfolio
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"> Kumar Dhananjaya</span>
               </span>
             </div>
             <div className="flex items-center space-x-8">
@@ -369,7 +369,7 @@ export default function Home() {
         </Section>
 
         {/* Projects Section */}
-        <Section id="projects" title="Academic Projects" icon={Code}>
+        <Section id="projects" title="Projects" icon={Code}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.academic_projects.map((project, index) => (
               <div key={index} className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-800 hover:border-blue-500/50 transition-all duration-300">
