@@ -76,6 +76,22 @@ const Hero = () => {
               >
                 View Projects
               </a>
+              <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-full font-medium transition-all inline-block shadow-lg hover:shadow-xl"
+              >
+                Download Resume
+              </motion.a>
+            </motion.div>
             </div>
 
             <div className="flex items-center gap-6">

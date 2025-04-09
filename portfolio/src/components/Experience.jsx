@@ -48,30 +48,42 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: "Hackathon Winner",
-      company: "HPE Swarm-IT Hackathon 2023",
-      period: "2023",
-      description: "Won the HPE Swarm-IT Hackathon 2023 organized by Hewlett Packard Enterprise, a competition renowned for its groundbreaking technology solutions."
+        title: "Associate Software Engineer",
+        company: "Examic EdTech Pvt Ltd",
+        period: "July 2024 - Present",
+        description:
+          "Building a scalable assessment solution platform, featuring secure backend servers, intuitive admin panels, and a seamless frontend. Integrated dynamic test authoring, scheduling, and real-time analytics to optimize online assessments.",
+      },
+    {
+      title: "Full-Stack Developer Intern",
+      company: "KandraDigital Pvt Ltd",
+      period: "Feb 2024 - July 2024",
+      description:
+        "Developed three robust projects using the MERN stack, DigitalOcean, and Next.js, encompassing backend servers, admin panels, and frontends.",
     },
     {
-      title: "Full Stack Developer Intern",
-      company: "Tech Innovations Inc.",
-      period: "Jan 2023 - June 2023",
-      description: "Worked on developing and maintaining web applications using React, Node.js, and MongoDB. Collaborated with cross-functional teams to deliver high-quality software solutions."
+      title: "Software Developer Intern - Trainee",
+      company: "CAIR-DRDO",
+      period: "Aug 2022 - Oct 2022",
+      description:
+        "Developed and deployed a Java Application Management System, reducing task completion times by 40% and boosting user adoption by 80% across 5 departments in the Lab.",
     },
     {
-      title: "Mobile App Developer",
-      company: "AppDev Solutions",
-      period: "May 2022 - Dec 2022",
-      description: "Developed mobile applications using Flutter and Dart. Implemented responsive UI designs and integrated with backend services."
+      title: "Future Ready Talent Intern",
+      company: "Microsoft",
+      period: "Oct 2021 - Mar 2022",
+      description:
+        "Developed a restaurant management app on Azure, cutting order processing times by 20% and gaining 150 hours of hands-on Microsoft cloud experience.",
     },
     {
       title: "Computer Science Graduation",
-      company: "University of Technology",
+      company: "Maharaja Institute of Technology Thandavapura, Mysore",
       period: "2019 - 2023",
-      description: "Graduated with a Bachelor's degree in Computer Science. Specialized in software development and data structures."
-    }
+      description:
+        "Graduated with a Bachelor's degree in Computer Science with a CGPA of 8.6/10. Specialized in software development and data structures.",
+    },
   ];
+  
 
   return (
     <section id="experience" className="py-20 bg-dark/50">
