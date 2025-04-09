@@ -1,19 +1,19 @@
 // src/components/Hero.jsx
-import { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Hero = () => {
   const profileImageRef = useRef(null);
   const sectionRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
-  
+
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const imageRotate = useTransform(scrollYProgress, [0, 1], [0, 10]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -22,7 +22,7 @@ const Hero = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('active');
+          entry.target.classList.add("active");
         }
       },
       { threshold: 0.1 }
@@ -36,17 +36,17 @@ const Hero = () => {
       // Update mouse position relative to viewport
       setMousePosition({
         x: e.clientX / window.innerWidth - 0.5,
-        y: e.clientY / window.innerHeight - 0.5
+        y: e.clientY / window.innerHeight - 0.5,
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       if (profileImageRef.current) {
         observer.unobserve(profileImageRef.current);
       }
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -58,32 +58,32 @@ const Hero = () => {
   };
 
   const socialIcons = [
-    { 
-      icon: <FaGithub size={28} />, 
+    {
+      icon: <FaGithub size={28} />,
       href: "https://github.com/KumarDhananjaya",
-      delay: 0.3
+      delay: 0.3,
     },
-    { 
-      icon: <FaLinkedin size={28} />, 
+    {
+      icon: <FaLinkedin size={28} />,
       href: "https://www.linkedin.com/in/kumardhananjaya/",
-      delay: 0.4
+      delay: 0.4,
     },
-    { 
-      icon: <FaEnvelope size={28} />, 
+    {
+      icon: <FaEnvelope size={28} />,
       href: "mailto:kumar62.shivu@gmail.com",
-      delay: 0.5
-    }
+      delay: 0.5,
+    },
   ];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="home" 
+      id="home"
       className="min-h-screen flex items-center py-16 sm:py-20 md:py-24 overflow-hidden relative"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-0" />
-      
+
       {/* Animated background particles - simplified for performance */}
       <div className="absolute inset-0 overflow-hidden z-0">
         {[...Array(20)].map((_, i) => (
@@ -121,7 +121,7 @@ const Hero = () => {
             style={{ opacity: textOpacity }}
             className="w-full lg:w-1/2 mt-8 lg:mt-0"
           >
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -129,8 +129,8 @@ const Hero = () => {
             >
               👋 Hello, I'm
             </motion.h2>
-            
-            <motion.h1 
+
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -138,8 +138,8 @@ const Hero = () => {
             >
               Kumar Dhananjaya
             </motion.h1>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -147,11 +147,11 @@ const Hero = () => {
             >
               <TypeAnimation
                 sequence={[
-                  'Full Stack Developer',
+                  "Full Stack Developer",
                   1000,
-                  'Mobile App Developer',
+                  "Mobile App Developer",
                   1000,
-                  'CS Graduate',
+                  "CS Graduate",
                   1000,
                 ]}
                 wrapper="span"
@@ -160,24 +160,26 @@ const Hero = () => {
                 className="font-medium"
               />
             </motion.div>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-base sm:text-lg text-gray-300 mb-8 max-w-lg"
             >
-              I have expertise in Full Stack (JavaScript) and Mobile App development. Passionate about expanding my knowledge and learning new technologies.
+              I have expertise in Full Stack (JavaScript) and Mobile App
+              development. Passionate about expanding my knowledge and learning
+              new technologies.
             </motion.p>
 
             {/* Buttons */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-wrap gap-4 mb-8"
             >
-              <motion.a
+              {/* <motion.a
                 whileHover={{ scale: 1.05, backgroundColor: "#3a86ff" }}
                 whileTap={{ scale: 0.95 }}
                 href="#contact"
@@ -185,16 +187,19 @@ const Hero = () => {
               >
                 Contact Me
               </motion.a>
-              
+
               <motion.a
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(58, 134, 255, 0.1)" }}
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgba(58, 134, 255, 0.1)",
+                }}
                 whileTap={{ scale: 0.95 }}
                 href="#projects"
                 className="border border-primary text-primary hover:bg-primary/10 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all"
               >
                 View Projects
-              </motion.a>
-              
+              </motion.a> */}
+
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -208,7 +213,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Social Icons */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -224,10 +229,10 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: social.delay }}
-                  whileHover={{ 
-                    scale: 1.2, 
+                  whileHover={{
+                    scale: 1.2,
                     rotate: 5,
-                    color: "#3a86ff" 
+                    color: "#3a86ff",
                   }}
                 >
                   {social.icon}
@@ -240,21 +245,21 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ 
-              duration: 0.8, 
+            transition={{
+              duration: 0.8,
               delay: 0.2,
               type: "spring",
-              stiffness: 100 
+              stiffness: 100,
             }}
-            style={{ 
+            style={{
               scale: imageScale,
-              rotateZ: imageRotate
+              rotateZ: imageRotate,
             }}
             className="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 flex justify-center"
           >
             <motion.div
               ref={profileImageRef}
-              style={{ 
+              style={{
                 transform: calculateTransform(),
                 transformStyle: "preserve-3d",
               }}
@@ -262,42 +267,42 @@ const Hero = () => {
               className="reveal relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 group"
             >
               {/* Glowing background effect */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 opacity-70 blur-xl"
-                animate={{ 
+                animate={{
                   scale: [1, 1.05, 1],
                   opacity: [0.5, 0.8, 0.5],
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
-              
+
               {/* Rotating border effect */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 rounded-full border-4 border-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-clip-border"
-                animate={{ 
+                animate={{
                   rotate: 360,
                 }}
                 transition={{
                   duration: 8,
                   repeat: Infinity,
-                  ease: "linear"
+                  ease: "linear",
                 }}
               />
-              
+
               {/* Image container */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/30 p-1 backdrop-blur-sm bg-black/20 shadow-2xl transform-gpu">
                 <img
-                  src="images/profilrpic.jpeg" 
+                  src="images/profilrpic.jpeg"
                   alt="Kumar Dhananjaya"
                   className="w-full h-full object-cover rounded-full transform transition-transform duration-500 group-hover:scale-110"
                 />
-                
+
                 {/* Overlay effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"
                   whileHover={{ opacity: 0.3 }}
                 />
@@ -306,28 +311,29 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Scroll indicator */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
       >
         <span className="text-sm mb-2">Scroll Down</span>
-        <motion.div 
+        <motion.div
           className="w-1 h-8 rounded-full bg-primary/50 overflow-hidden"
-          animate={{ 
-            backgroundPosition: ["0% 0%", "0% 100%"] 
+          animate={{
+            backgroundPosition: ["0% 0%", "0% 100%"],
           }}
-          transition={{ 
-            repeat: Infinity, 
-            duration: 1.5, 
-            ease: "linear" 
+          transition={{
+            repeat: Infinity,
+            duration: 1.5,
+            ease: "linear",
           }}
-          style={{ 
-            backgroundImage: "linear-gradient(to bottom, transparent, #3a86ff, transparent)",
-            backgroundSize: "100% 200%" 
+          style={{
+            backgroundImage:
+              "linear-gradient(to bottom, transparent, #3a86ff, transparent)",
+            backgroundSize: "100% 200%",
           }}
         />
       </motion.div>

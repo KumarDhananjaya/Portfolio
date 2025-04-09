@@ -1,6 +1,12 @@
 // src/components/About.jsx
 import { useEffect, useRef, useState } from "react";
-import { motion, useAnimation, useMotionValue, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useMotionValue,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import {
   BsAward,
   BsCodeSlash,
@@ -65,7 +71,7 @@ const skillCategories = {
 
 const AboutCard = ({ icon, title, description, delay }) => {
   const [hover, setHover] = useState(false);
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -87,52 +93,52 @@ const AboutCard = ({ icon, title, description, delay }) => {
         transition={{
           type: "spring",
           stiffness: 400,
-          damping: 20
+          damping: 20,
         }}
         className="bg-dark/50 backdrop-blur-sm p-6 rounded-lg shadow-lg border border-gray-700 hover:border-primary transition-all duration-300 h-full flex flex-col relative z-10 overflow-hidden"
       >
         {/* Animated gradient background */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-purple-500/5 opacity-0 z-0"
-          animate={{ opacity: hover ? 0.3 : 0 }} 
+          animate={{ opacity: hover ? 0.3 : 0 }}
           transition={{ duration: 0.3 }}
         />
-        
+
         {/* Card content */}
-        <motion.div 
+        <motion.div
           className="text-primary text-4xl mb-4 relative z-10"
-          animate={{ 
+          animate={{
             scale: hover ? 1.1 : 1,
-            y: hover ? -5 : 0
+            y: hover ? -5 : 0,
           }}
           transition={{
             type: "spring",
             stiffness: 300,
-            damping: 15
+            damping: 15,
           }}
         >
           {icon}
-          
+
           {/* Glowing effect */}
-          <motion.div 
+          <motion.div
             className="absolute inset-0 bg-primary/20 rounded-full blur-xl -z-10"
-            animate={{ 
+            animate={{
               scale: hover ? 1.5 : 0.8,
-              opacity: hover ? 0.8 : 0
-            }} 
+              opacity: hover ? 0.8 : 0,
+            }}
             transition={{ duration: 0.3 }}
           />
         </motion.div>
-        
-        <motion.h3 
+
+        <motion.h3
           className="text-xl font-bold mb-2 relative z-10"
           animate={{ y: hover ? -2 : 0 }}
           transition={{ delay: 0.05, duration: 0.2 }}
         >
           {title}
         </motion.h3>
-        
-        <motion.p 
+
+        <motion.p
           className="text-gray-300 flex-grow relative z-10"
           animate={{ y: hover ? -2 : 0 }}
           transition={{ delay: 0.1, duration: 0.2 }}
@@ -140,7 +146,7 @@ const AboutCard = ({ icon, title, description, delay }) => {
           {description}
         </motion.p>
       </motion.div>
-      
+
       {/* 3D Shadow effect */}
       <motion.div
         animate={{
@@ -158,7 +164,7 @@ const AboutCard = ({ icon, title, description, delay }) => {
 
 const SkillBadge = ({ skill, index }) => {
   const [hover, setHover] = useState(false);
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -181,18 +187,18 @@ const SkillBadge = ({ skill, index }) => {
         transition={{
           type: "spring",
           stiffness: 400,
-          damping: 15
+          damping: 15,
         }}
         className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:border-blue-400 group relative z-10 h-full"
       >
         <motion.div
-          animate={{ 
+          animate={{
             rotateY: hover ? 360 : 0,
-            scale: hover ? 1.2 : 1
+            scale: hover ? 1.2 : 1,
           }}
-          transition={{ 
+          transition={{
             rotateY: { duration: hover ? 0.7 : 0 },
-            scale: { type: "spring", stiffness: 400 }
+            scale: { type: "spring", stiffness: 400 },
           }}
           className="relative"
         >
@@ -203,18 +209,18 @@ const SkillBadge = ({ skill, index }) => {
               </span>
             </div>
           )}
-          
+
           {/* Icon glow effect */}
-          <motion.div 
+          <motion.div
             className="absolute inset-0 bg-blue-400/30 rounded-full blur-md -z-10"
-            animate={{ 
+            animate={{
               opacity: hover ? 1 : 0,
-              scale: hover ? 1.5 : 1
+              scale: hover ? 1.5 : 1,
             }}
           />
         </motion.div>
-        
-        <motion.span 
+
+        <motion.span
           className="text-gray-200 font-medium text-sm"
           animate={{ y: hover ? 2 : 0 }}
           transition={{ delay: 0.1 }}
@@ -222,7 +228,7 @@ const SkillBadge = ({ skill, index }) => {
           {skill}
         </motion.span>
       </motion.div>
-      
+
       {/* Shadow effect */}
       <motion.div
         animate={{
@@ -244,37 +250,40 @@ const About = () => {
   const aboutRef = useRef(null);
   const sectionRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+
   // Parallax scroll effects
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   // Create transformed values from these motion values
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-2, 2]);
   const rotateX = useTransform(mouseY, [-0.5, 0.5], [2, -2]);
-  
+
   // Add effect to update mouse position
   useEffect(() => {
     const handleMouseMove = (e) => {
       // Convert mouse position to normalized values between -0.5 and 0.5
-      mouseX.set((e.clientX / window.innerWidth) - 0.5);
-      mouseY.set((e.clientY / window.innerHeight) - 0.5);
+      mouseX.set(e.clientX / window.innerWidth - 0.5);
+      mouseY.set(e.clientY / window.innerHeight - 0.5);
     };
-    
+
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.2, 0.9], [0, 1, 1]);
+  const contentOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.9],
+    [0, 1, 1]
+  );
   const titleScale = useTransform(scrollYProgress, [0, 0.2], [0.8, 1]);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -290,7 +299,7 @@ const About = () => {
     if (aboutRef.current) {
       observer.observe(aboutRef.current);
     }
-    
+
     const handleMouseMove = (e) => {
       // Update mouse position relative to the section
       const sectionRect = sectionRef.current?.getBoundingClientRect();
@@ -301,13 +310,13 @@ const About = () => {
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       if (aboutRef.current) {
         observer.unobserve(aboutRef.current);
       }
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [controls]);
 
@@ -352,7 +361,7 @@ const About = () => {
               top: `${Math.random() * 100}%`,
               filter: "blur(40px)",
               opacity: 0.4,
-              y: backgroundY
+              y: backgroundY,
             }}
             animate={{
               x: [0, Math.random() * 30 - 15],
@@ -367,12 +376,25 @@ const About = () => {
             }}
           />
         ))}
-        
+
         {/* Grid lines */}
-        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="absolute inset-0 w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
-            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(66, 153, 225, 0.05)" strokeWidth="0.5" />
+            <pattern
+              id="grid"
+              width="50"
+              height="50"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 50 0 L 0 0 0 50"
+                fill="none"
+                stroke="rgba(66, 153, 225, 0.05)"
+                strokeWidth="0.5"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
@@ -388,7 +410,10 @@ const About = () => {
           className="text-center mb-12 md:mb-20"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4 relative inline-block">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Me</span>
+            About{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+              Me
+            </span>
             <motion.div
               initial={{ width: "0%" }}
               whileInView={{ width: "100%" }}
@@ -396,7 +421,7 @@ const About = () => {
               className="h-1 bg-gradient-to-r from-blue-400 to-purple-500 mt-2"
             ></motion.div>
           </h2>
-          
+
           {/* 3D floating particles around title */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
             {[...Array(6)].map((_, i) => (
@@ -406,9 +431,11 @@ const About = () => {
                 style={{
                   width: Math.random() * 6 + 2,
                   height: Math.random() * 6 + 2,
-                  left: (Math.random() * 200 - 100),
-                  top: (Math.random() * 100 - 50),
-                  background: `rgba(${Math.random() * 100 + 100}, ${Math.random() * 100 + 100}, 255, ${Math.random() * 0.5 + 0.2})`,
+                  left: Math.random() * 200 - 100,
+                  top: Math.random() * 100 - 50,
+                  background: `rgba(${Math.random() * 100 + 100}, ${
+                    Math.random() * 100 + 100
+                  }, 255, ${Math.random() * 0.5 + 0.2})`,
                 }}
                 animate={{
                   y: [0, Math.random() * -20 - 10, 0],
@@ -438,25 +465,25 @@ const About = () => {
           <AboutCard
             icon={<BsCodeSlash />}
             title="Full Stack Developer"
-            description="Proficient in JavaScript and modern web technologies to create robust applications."
+            description="Experienced in JavaScript, TypeScript, and modern frameworks to build scalable, end-to-end web and mobile applications."
             delay={0.1}
           />
           <AboutCard
             icon={<BsMortarboard />}
             title="CS Graduate"
-            description="Graduated with a strong foundation in computer science principles and practices."
+            description="Computer Science graduate with a strong grasp of algorithms, data structures, and software engineering best practices."
             delay={0.2}
           />
           <AboutCard
             icon={<BsAward />}
-            title="Award Winner"
-            description="Won HPE Swarm-IT Hackathon 2023 organized by HP Enterprise."
+            title="Hackathon Winner"
+            description="Winner of the HPE Swarm-IT Hackathon 2023 for developing an innovative, real-world tech solution under pressure."
             delay={0.3}
           />
           <AboutCard
             icon={<BsLightbulb />}
-            title="Continuous Learner"
-            description="Passionate about expanding knowledge and learning new technologies."
+            title="Continous Learner"
+            description="Driven by curiosity and growth—constantly exploring new tools, technologies, and creative ways to solve problems."
             delay={0.4}
           />
         </motion.div>
@@ -471,10 +498,10 @@ const About = () => {
             transition={{ duration: 0.7 }}
             className="reveal from-left space-y-6"
             style={{
-              transformStyle: "preserve-3d", 
+              transformStyle: "preserve-3d",
               transformOrigin: "left center",
               rotateY,
-              rotateX
+              rotateX,
             }}
           >
             <motion.div className="relative">
@@ -484,12 +511,12 @@ const About = () => {
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="text-2xl md:text-3xl font-bold relative z-10"
               >
-                Software Engineer | Specializing in Web & Mobile Application Development
-
+                Software Engineer | Specializing in Web & Mobile Application
+                Development
               </motion.h3>
-              
+
               {/* Highlight effect */}
-              <motion.div 
+              <motion.div
                 className="absolute -inset-1 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-lg blur-xl -z-10"
                 animate={{
                   opacity: [0.2, 0.4, 0.2],
@@ -508,7 +535,15 @@ const About = () => {
               transition={{ delay: 0.3, duration: 0.5 }}
               className="text-gray-300"
             >
-I'm a Full Stack JavaScript and Mobile App Developer with a strong foundation in building scalable, user-focused applications. I’ve worked across the entire development stack, from frontend interfaces to backend services, using modern technologies like React, TypeScript, GraphQL, and cloud-native tools. My passion for problem-solving and innovation was recognized when I won the HPE Swarm-IT Hackathon 2023, where I built a high-impact solution under time constraints.            </motion.p>
+              I'm a Full Stack Web and Mobile App Developer with a strong
+              foundation in building scalable, user-focused applications. I’ve
+              worked across the entire development stack, from frontend
+              interfaces to backend services, using modern technologies like
+              React, TypeScript, GraphQL, and cloud-native tools. My passion for
+              problem-solving and innovation was recognized when I won the HPE
+              Swarm-IT Hackathon 2023, where I built a high-impact solution
+              under time constraints.{" "}
+            </motion.p>
 
             <motion.p
               initial={{ opacity: 0 }}
@@ -516,7 +551,9 @@ I'm a Full Stack JavaScript and Mobile App Developer with a strong foundation in
               transition={{ delay: 0.4, duration: 0.5 }}
               className="text-gray-300"
             >
-             I’m driven by a desire to keep learning and expanding my technical skill set, especially in areas like distributed systems, cloud infrastructure, and performance optimization. I’m currently seeking remote job and internship opportunities where I can contribute to meaningful projects, collaborate with experienced teams, and grow as a developer while making a real impact.
+              I’m driven by a desire to keep learning and expanding my technical
+              skill set, especially in areas like distributed systems, cloud
+              infrastructure, and performance optimization.
             </motion.p>
 
             <motion.div
@@ -533,9 +570,8 @@ I'm a Full Stack JavaScript and Mobile App Developer with a strong foundation in
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-full font-medium transition-all inline-block shadow-lg hover:shadow-xl relative"
               >
                 Download Resume
-                
                 {/* Button glow effect */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 -z-10 rounded-full opacity-40 blur-md bg-gradient-to-r from-blue-400 to-purple-500"
                   animate={{
                     scale: [1, 1.1, 1],
@@ -558,20 +594,20 @@ I'm a Full Stack JavaScript and Mobile App Developer with a strong foundation in
             className="reveal from-right"
             style={{
               perspective: "1000px",
-              transformStyle: "preserve-3d", 
+              transformStyle: "preserve-3d",
               transformOrigin: "right center",
             }}
           >
-            <motion.div 
+            <motion.div
               className="bg-gray-900/30 backdrop-blur-sm p-6 rounded-xl border border-gray-800 shadow-xl relative overflow-hidden"
               style={{
                 transformStyle: "preserve-3d",
                 rotateY,
-                rotateX
+                rotateX,
               }}
             >
               {/* Animated background gradient */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-purple-500/5 -z-10"
                 animate={{
                   rotate: [0, 360],
@@ -582,24 +618,37 @@ I'm a Full Stack JavaScript and Mobile App Developer with a strong foundation in
                   ease: "linear",
                 }}
               />
-              
+
               {/* Background grid effect */}
               <div className="absolute inset-0 opacity-5">
                 <svg width="100%" height="100%">
-                  <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
-                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+                  <pattern
+                    id="smallGrid"
+                    width="8"
+                    height="8"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M 8 0 L 0 0 0 8"
+                      fill="none"
+                      stroke="rgba(255,255,255,0.3)"
+                      strokeWidth="0.5"
+                    />
                   </pattern>
                   <rect width="100%" height="100%" fill="url(#smallGrid)" />
                 </svg>
               </div>
-              
+
               <motion.h3
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="text-xl font-bold mb-6 text-center sm:text-left pb-2 border-b border-gray-700 relative z-10"
               >
-                Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Skills</span>
+                Technical{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                  Skills
+                </span>
               </motion.h3>
 
               <motion.div
@@ -616,7 +665,7 @@ I'm a Full Stack JavaScript and Mobile App Developer with a strong foundation in
                       className="mb-6 last:mb-0"
                     >
                       <div className="flex items-center mb-3">
-                        <motion.div 
+                        <motion.div
                           className="w-2 h-2 bg-blue-500 rounded-full mr-2"
                           animate={{
                             scale: [1, 1.3, 1],
@@ -687,9 +736,9 @@ I'm a Full Stack JavaScript and Mobile App Developer with a strong foundation in
                     <path d="M5 12h14"></path>
                     <path d="m12 5 7 7-7 7"></path>
                   </motion.svg>
-                  
+
                   {/* Button hover effect */}
-                  <motion.div 
+                  <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 -z-0 opacity-0 group-hover:opacity-100 transition-opacity"
                     animate={{
                       x: ["0%", "100%", "0%"],
@@ -703,25 +752,25 @@ I'm a Full Stack JavaScript and Mobile App Developer with a strong foundation in
                 </motion.a>
               </motion.div>
             </motion.div>
-            
+
             {/* Card shadow effect */}
             <motion.div
               className="absolute inset-0 rounded-xl bg-blue-500/5 blur-lg -z-10 translate-y-2"
               style={{
                 rotateY,
-                rotateX
+                rotateX,
               }}
             />
           </motion.div>
         </div>
       </div>
-      
+
       {/* Scroll progress indicator */}
-      <motion.div 
+      <motion.div
         className="hidden md:block fixed right-8 top-1/2 transform -translate-y-1/2 w-1 h-32 bg-gray-800 rounded-full overflow-hidden"
         style={{ scaleY: scrollYProgress }}
       >
-        <motion.div 
+        <motion.div
           className="w-full bg-gradient-to-b from-blue-400 to-purple-500 absolute top-0 bottom-0"
           style={{ scaleY: scrollYProgress }}
         />

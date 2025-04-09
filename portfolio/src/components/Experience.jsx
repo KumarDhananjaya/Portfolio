@@ -1,6 +1,6 @@
 // src/components/Experience.jsx
-import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 const ExperienceItem = ({ title, company, period, description, isLast }) => {
   return (
@@ -9,10 +9,7 @@ const ExperienceItem = ({ title, company, period, description, isLast }) => {
         <div className="w-4 h-4 bg-primary rounded-full"></div>
         {!isLast && <div className="w-1 h-full bg-primary"></div>}
       </div>
-      <motion.div
-        whileHover={{ x: 5 }}
-        className="ml-6 pb-8"
-      >
+      <motion.div whileHover={{ x: 5 }} className="ml-6 pb-8">
         <h3 className="text-xl font-bold">{title}</h3>
         <div className="text-primary font-medium">{company}</div>
         <div className="text-gray-400 text-sm mb-2">{period}</div>
@@ -29,7 +26,7 @@ const Experience = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('active');
+          entry.target.classList.add("active");
         }
       },
       { threshold: 0.1 }
@@ -48,12 +45,12 @@ const Experience = () => {
 
   const experiences = [
     {
-        title: "Associate Software Engineer",
-        company: "Examic EdTech Pvt Ltd",
-        period: "July 2024 - Present",
-        description:
-          "Building a scalable assessment solution platform, featuring secure backend servers, intuitive admin panels, and a seamless frontend. Integrated dynamic test authoring, scheduling, and real-time analytics to optimize online assessments.",
-      },
+      title: "Associate Software Engineer",
+      company: "Examic EdTech Pvt Ltd",
+      period: "July 2024 - Present",
+      description:
+        "Building a scalable assessment solution platform, featuring secure backend servers, intuitive admin panels, and a seamless frontend. Integrated dynamic test authoring, scheduling, and real-time analytics to optimize online assessments.",
+    },
     {
       title: "Full-Stack Developer Intern",
       company: "KandraDigital Pvt Ltd",
@@ -83,7 +80,6 @@ const Experience = () => {
         "Graduated with a Bachelor's degree in Computer Science with a CGPA of 8.6/10. Specialized in software development and data structures.",
     },
   ];
-  
 
   return (
     <section id="experience" className="py-20 bg-dark/50">
@@ -95,7 +91,7 @@ const Experience = () => {
           <div className="w-20 h-1 bg-primary mx-auto"></div>
         </div>
 
-        <div 
+        <div
           ref={experienceRef}
           className="max-w-3xl mx-auto reveal from-bottom"
         >
